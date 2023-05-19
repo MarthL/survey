@@ -11,7 +11,7 @@ export function Step1(props: any): JSX.Element {
 
 const [submit, setSubmit] = useState(false);
 const { count, setCount } = props;
-const maxCount: any = 10;
+
 const errors = {};
 
 const validate = (values: any) => {
@@ -36,12 +36,12 @@ return (
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmit(true);
+          setCount(2);
+          console.log(count);
         }, 400)
-        setCount(2);
       }}
     >
       <Container sx={{ margin: "1rem" }}>
-        <Typography align='center' mt={5} mb={2}> Etape <span>{count}/{maxCount}</span></Typography>
         <Form style={{ display: 'flex', flexDirection: "column", gap: "10px" }}>
           <Field as={TextField} label="name" type="text" name="name" >  </Field>
           <div className={styles.Error}> <ErrorMessage name="name"/> </div>
