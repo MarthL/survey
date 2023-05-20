@@ -30,6 +30,7 @@ const validate = (values: any) => {
 
 return (
   <>
+    <Typography align='center' fontStyle="oblique">Please give us some details about you</Typography>
     <Formik initialValues={{ name: '', surname: '', society: '' }}
       validate={validate}
       onSubmit={(values) => {

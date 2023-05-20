@@ -22,12 +22,14 @@ export function  Step2(props: any): JSX.Element {
 
   return (<>
   <Formik initialValues={{item: 'Individual'}} 
-    onSubmit={ (values) => {
-        alert('test')
-        alert(JSON.stringify(values, null, 2));
+    onSubmit={ (values: any) => {
+        setItem(values);
+        alert(JSON.stringify(item));
+        setCount(3);
       }
     }>
   <Container sx={{ margin: "1rem" }}>
+  <Typography align='center' fontStyle="oblique">Which kind of structure this project is about ?</Typography>
     <Form>
     <RadioGroup aria-label="Your plan" name="people" defaultValue="Individual">
       <List

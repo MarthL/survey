@@ -9,16 +9,19 @@ import styles from './StepperComponent.module.css';
 
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
+import { Step3 } from './Step3';
 
 export function StepperComponent(props: any): JSX.Element {
 
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(3); // set to 1 by default, change for debug
   const maxCount: any = 10;
 
   return(
     <>
       <Typography align='center' mt={5} mb={2}> Etape <span>{count}/{maxCount}</span></Typography>   
-      {count === 1 ? <Step1 setCount={setCount}/> : <Step2 setCount={setCount}/>}
+      {count === 1 ? <Step1 setCount={setCount}/> : false} 
+      { count === 2 ? <Step2 setCount={setCount}/> : false}
+      { count === 3 ? <Step3 setCount={setCount} /> : false }
     </>
   )
 
