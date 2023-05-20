@@ -14,6 +14,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Person from '@mui/icons-material/Person';
 import People from '@mui/icons-material/People';
 import Apartment from '@mui/icons-material/Apartment';
+import { Box } from "@mui/material";
 
 export function  Step2(props: any): JSX.Element {
 
@@ -73,7 +74,9 @@ export function  Step2(props: any): JSX.Element {
         ))}
       </List>
     </RadioGroup>
-    <Button type="submit" onSubmit={() => setCount(3)}> Envoyer </Button>
+    <Box textAlign="center">
+      <Button variant="contained" type="submit" onSubmit={() => setCount(3)}> Envoyer </Button>
+    </Box>
     </Form>
     </Container>
     </Formik>

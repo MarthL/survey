@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import styles from './StepperComponent.module.css';
+import { Box } from '@mui/material';
 
 export function Step1(props: any): JSX.Element {
 
@@ -50,7 +51,9 @@ return (
           <div className={styles.Error}> <ErrorMessage name="surname"/> </div>
           <Field as={TextField} type="text" label="society" name="society"></Field>
           <div className={styles.Error}> <ErrorMessage name="society"/> </div>
-          <Button type="submit" onSubmit={() => setCount(2)}> Send </Button>
+          <Box textAlign="center">
+          <Button variant="contained" type="submit" onSubmit={() => setCount(2)}> Send </Button>
+          </Box>
         </Form>
       </Container>
 

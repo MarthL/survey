@@ -48,6 +48,7 @@ export function Step3(props: any): JSX.Element {
   return(<>
   <Container sx={{ margin: "1rem" }}>
   <Box component="div" sx={{marginBlock: '10px'}}>
+  <Typography textAlign="center"> What are the time estimation of this project ? </Typography>
   <Slider 
     color="info"
     size="lg"
@@ -82,8 +83,10 @@ export function Step3(props: any): JSX.Element {
 </Select>
  </Box>
 
- <Button type="submit" onSubmit={() => setCount(4)}> Next </Button>
-    
+<Box textAlign="center">
+ <Button variant="contained" type="submit" onSubmit={() => setCount(4)}> Next </Button>
+</Box>
+
   </Container> 
   </>)
 }
