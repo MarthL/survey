@@ -19,7 +19,7 @@ export function StepperComponent(props: any): JSX.Element {
   return(
     <>
       <Typography align='center' mt={5} mb={2}> Etape <span>{count}/{maxCount}</span></Typography>   
-      {count === 1 ? <Step1 setCount={setCount}/> : false} 
+      { count === 1 ? <Step1 setCount={setCount}/> : false} 
       { count === 2 ? <Step2 setCount={setCount}/> : false}
       { count === 3 ? <Step3 setCount={setCount} /> : false }
     </>

@@ -1,12 +1,32 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { JSX } from "react/jsx-runtime";
 import Slider from '@mui/joy/Slider';
 import Tooltip from '@mui/material/Tooltip';
 import { Container } from "@mui/material";
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import {Box} from "@mui/material";
+import { Typography } from "@mui/material";
+import MenuItem from "@mui/material";
 
 export function Step3(props: any): JSX.Element {
 
   const { set, setCount } = props;
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  const handleOutsideClick = (event: any) => {
+    if (!event.currentTarget.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
 
   function valueText(value: number) {
     return `${value} month`;
@@ -27,6 +47,7 @@ export function Step3(props: any): JSX.Element {
 
   return(<>
   <Container sx={{ margin: "1rem" }}>
+  <Box component="div" sx={{marginBlock: '10px'}}>
   <Slider 
     color="info"
     size="lg"
@@ -37,7 +58,29 @@ export function Step3(props: any): JSX.Element {
     valueLabelDisplay="auto"
     marks={marks}
     valueLabelFormat={isMaxValue}
-    getAriaValueText={valueText}/>
+    getAriaValueText={valueText}
+  />
+  </Box>
+
+  <Typography textAlign="center">Which kind of project is it ? </Typography>
+
+  <Box component="div" sx={{marginTop : "20px"}}>
+<Select
+  color="primary"
+  disabled={false}
+  placeholder="Type of project"
+  size="lg"
+  variant="plain"
+  onClose={() => setOpen(false)}
+  onClick={() => setOpen(true)}
+>
+<Option value="static">Static Website</Option>
+  <Option value="webapp">Web Application</Option>
+  <Option value="features">Features on existing Web app</Option>
+  <Option value="consulting">Consulting</Option>
+  <Option value="else">Something else</Option>
+</Select>
+ </Box>
     
   </Container> 
   </>)
