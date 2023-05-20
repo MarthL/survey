@@ -7,7 +7,7 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import {Box} from "@mui/material";
 import { Typography } from "@mui/material";
-import MenuItem from "@mui/material";
+import {Button} from "@mui/material";
 
 export function Step3(props: any): JSX.Element {
 
@@ -81,6 +81,8 @@ export function Step3(props: any): JSX.Element {
   <Option value="else">Something else</Option>
 </Select>
  </Box>
+
+ <Button type="submit" onSubmit={() => setCount(4)}> Next </Button>
     
   </Container> 
   </>)

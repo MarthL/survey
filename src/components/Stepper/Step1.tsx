@@ -50,7 +50,7 @@ return (
           <div className={styles.Error}> <ErrorMessage name="surname"/> </div>
           <Field as={TextField} type="text" label="society" name="society"></Field>
           <div className={styles.Error}> <ErrorMessage name="society"/> </div>
-          <Button type="submit" onSubmit={() => setCount(2)}> Envoyer </Button>
+          <Button type="submit" onSubmit={() => setCount(2)}> Send </Button>
         </Form>
       </Container>
 
