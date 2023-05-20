@@ -18,7 +18,17 @@ import Apartment from '@mui/icons-material/Apartment';
 export function  Step2(props: any): JSX.Element {
 
   const { count, setCount } = props;
+  const [item, setItem] = useState('Individual');
+
   return (<>
+  <Formik initialValues={{item: 'Individual'}} 
+    onSubmit={ (values) => {
+        alert('test')
+        alert(JSON.stringify(values, null, 2));
+      }
+    }>
+  <Container sx={{ margin: "1rem" }}>
+    <Form>
     <RadioGroup aria-label="Your plan" name="people" defaultValue="Individual">
       <List
         sx={{
@@ -42,6 +52,8 @@ export function  Step2(props: any): JSX.Element {
               overlay
               value={item}
               label={item}
+              name='item'
+              onChange={() => setItem(item)}
               sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
               slotProps={{
                 action: ({ checked }) => ({
@@ -59,5 +71,9 @@ export function  Step2(props: any): JSX.Element {
         ))}
       </List>
     </RadioGroup>
+    <Button type="submit" onSubmit={() => setCount(3)}> Envoyer </Button>
+    </Form>
+    </Container>
+    </Formik>
   </>);
 }

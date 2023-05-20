@@ -34,7 +34,7 @@ return (
       validate={validate}
       onSubmit={(values) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+          // alert(JSON.stringify(values, null, 2));
           setSubmit(true);
           setCount(2);
           console.log(count);
