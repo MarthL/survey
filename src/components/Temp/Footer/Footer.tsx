@@ -11,7 +11,7 @@ export function Footer(): JSX.Element {
 
   return(
     <Box component="div" sx={{
-      backgroundColor: "#9c27b0",
+      backgroundColor: "#1976d2",
       display: { xs: 'flex' },
       flexGrow: 1,
       justifyContent: 'space-evenly',
@@ -20,6 +20,9 @@ export function Footer(): JSX.Element {
       fontWeight: 700,
       letterSpacing: '.3rem',
       textDecoration: 'none',
+      position: 'fixed', 
+      bottom: 0,
+      width: '100vw'
     }}>
       <NavLink to="/legal">
         <Typography color="white" >Legal Mentions</Typography>
