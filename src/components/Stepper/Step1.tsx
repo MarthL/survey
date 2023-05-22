@@ -7,13 +7,22 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import styles from './StepperComponent.module.css';
 import { Box } from '@mui/material';
+import {RingLoader} from 'react-spinners';
 
 export function Step1(props: any): JSX.Element {
 
 const [submit, setSubmit] = useState(false);
+const [isLoading, setIsLoading] = useState(true);
+
 const { count, setCount } = props;
 
 const errors = {};
+
+useEffect(() => {
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 5000);
+}, []);
 
 const validate = (values: any) => {
   const errors: any = {};
@@ -31,33 +40,44 @@ const validate = (values: any) => {
 
 return (
   <>
-    <Typography align='center' fontStyle="oblique">Please give us some details about you</Typography>
-    <Formik initialValues={{ name: '', surname: '', society: '' }}
-      validate={validate}
-      onSubmit={(values) => {
-        setTimeout(() => {
-          // alert(JSON.stringify(values, null, 2));
-          setSubmit(true);
-          setCount(2);
-          console.log(count);
-        }, 400)
-      }}
-    >
-      <Container sx={{ margin: "1rem" }}>
-        <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
-          <Field as={TextField} label="name" type="text" name="name" >  </Field>
-          <div className={styles.Error}> <ErrorMessage name="name"/> </div>
-          <Field as={TextField} type="text" label="surname" name="surname"></Field>
-          <div className={styles.Error}> <ErrorMessage name="surname"/> </div>
-          <Field as={TextField} type="text" label="society" name="society"></Field>
-          <div className={styles.Error}> <ErrorMessage name="society"/> </div>
-          <Box textAlign="center">
-          <Button variant="contained" type="submit" onSubmit={() => setCount(2)}> Send </Button>
-          </Box>
-        </Form>
-      </Container>
-
-    </Formik>
+    <div>
+    {isLoading ? (
+      <><Box textAlign='center'> Loading please wait </Box><div className="loader-container" style={{ textAlign: 'center' }}>
+          <RingLoader color="#000" size={500} />
+        </div>
+      </>
+    ) : (
+      <>
+      <Typography align='center' fontStyle="oblique">Please give us some details about you</Typography>
+      <Formik initialValues={{ name: '', surname: '', society: '' }}
+        validate={validate}
+        onSubmit={(values) => {
+          setTimeout(() => {
+            // alert(JSON.stringify(values, null, 2));
+            setSubmit(true);
+            setCount(2);
+            console.log(count);
+          }, 400)
+        }}
+      >
+        <Container sx={{ margin: "1rem" }}>
+          <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
+            <Field as={TextField} label="name" type="text" name="name" >  </Field>
+            <div className={styles.Error}> <ErrorMessage name="name"/> </div>
+            <Field as={TextField} type="text" label="surname" name="surname"></Field>
+            <div className={styles.Error}> <ErrorMessage name="surname"/> </div>
+            <Field as={TextField} type="text" label="society" name="society"></Field>
+            <div className={styles.Error}> <ErrorMessage name="society"/> </div>
+            <Box textAlign="center">
+            <Button variant="contained" type="submit" onSubmit={() => setCount(2)}> Send </Button>
+            </Box>
+          </Form>
+        </Container>
+  
+      </Formik>
+    </>
+    )}
+    </div>
   </>
 );
 }
