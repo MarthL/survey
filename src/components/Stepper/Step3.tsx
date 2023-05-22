@@ -11,7 +11,7 @@ import { Option } from '@mui/joy';
 
 export function Step3(props: any): JSX.Element {
 
-  const { set, setCount } = props;
+  const { count, setCount } = props;
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('');
   const [time, setTime] = useState('');
@@ -133,8 +133,9 @@ export function Step3(props: any): JSX.Element {
 
  </Box>
 
-<Box textAlign="center">
- <Button variant="contained" type="submit" onClick={() => setCount(4)}> Next </Button>
+ <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
+  <Button variant="contained" color="error" onClick={() => setCount(2)}> Back </Button>
+  <Button variant="contained" type="submit" onClick={() => setCount(4)}> Next </Button>
 </Box>
 </Container> 
 </Form>

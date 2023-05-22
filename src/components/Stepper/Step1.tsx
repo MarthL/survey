@@ -20,12 +20,14 @@ export function Step1(props: any): JSX.Element {
   const errors = {};
 
   useEffect(() => {
+  if(!isLoaded) {
     setTimeout(() => {
       setIsLoading(false);
     }, 5000);
     setTimeout(() => {
       setIsLoaded(true);
     }, 6000);
+  }
   }, []);
   
 

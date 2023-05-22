@@ -74,7 +74,7 @@ export function  Step2(props: any): JSX.Element {
         ))}
       </List>
     </RadioGroup>
-    <Box textAlign="center">
+    <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
       <Button variant="contained" type="submit" onSubmit={() => setCount(3)}> Envoyer </Button>
     </Box>
     </Form>
