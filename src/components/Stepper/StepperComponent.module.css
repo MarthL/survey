@@ -3,3 +3,17 @@
   font-size: small;
   font-style: italic;
 }
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in-animation 2s ease-in-out forwards;
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
