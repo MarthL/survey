@@ -81,11 +81,9 @@ export function Step3(props: any): JSX.Element {
     setType(values.type);
     setTime(values.time);
     console.log(values);
-    console.log('type', values.type);
-    console.log('time', values.time);
   } }>
   {({ values, setFieldValue }) => (
-  <Form>
+  <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
   <Container sx={{ margin: "1rem" }}>
   <Box component="div" sx={{marginBlock: '10px'}}>
   <Typography textAlign="center"> What are the time estimation of this project ? </Typography>
@@ -107,14 +105,14 @@ export function Step3(props: any): JSX.Element {
 
   <Typography textAlign="center">Which kind of project is it ? </Typography>
 
-  <Box component="div" sx={{marginTop : "20px", textAlign: 'center'}}>
+  <Box component="div" sx={{marginTop : "20px", marginBottom: "20px", textAlign: 'center'}}>
   <Select
       color="primary"
       name="type"
       placeholder="Type of project"
       displayEmpty
       size="medium"
-      variant="standard"
+      variant="outlined"
       value={selectedValue}
       onChange={(event: any) => {
         setFieldValue("type", event.target.value);
@@ -136,7 +134,7 @@ export function Step3(props: any): JSX.Element {
  </Box>
 
 <Box textAlign="center">
- <Button variant="contained" type="submit" onClick={() => console.log('values')}> Next </Button>
+ <Button variant="contained" type="submit" onClick={() => setCount(4)}> Next </Button>
 </Box>
 </Container> 
 </Form>
