@@ -10,7 +10,7 @@ import { Formik, Form } from "formik";
 import { Option } from '@mui/joy'; 
 
 export function WebStaticForm(props: any): JSX.Element {
-  return <>WebStaticForm</>
+  return (<>WebStaticForm</>)
 }
 
 // Quel est l'objectif principal de votre site web statique ? 

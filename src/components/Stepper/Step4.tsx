@@ -16,5 +16,28 @@ export function Step4(props: any): JSX.Element {
 
   console.log(type);
 
-  return <>Step 4</>
+  // const getForm = (value: string) => {
+  //   switch (value) {
+  //     case 'static':
+  //       return <WebStaticForm />;
+  //     case 'webapp':
+  //       return 'Web Application';
+  //     case 'features':
+  //       return 'Features on existing Web app';
+  //     case 'consulting':
+  //       return 'Consulting';
+  //     case 'else':
+  //       return 'Something else';
+  //     default:
+  //       return 'Type of project';
+  //   }
+  // };
+
+  return(
+    <>
+    {type.type === 'static' ? <WebStaticForm /> : false }
+    </>
+  )
+
+
 }
