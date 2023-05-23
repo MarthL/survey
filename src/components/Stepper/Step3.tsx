@@ -11,7 +11,7 @@ import { Option } from '@mui/joy';
 
 export function Step3(props: any): JSX.Element {
 
-  const { count, setCount } = props;
+  const { count, setCount, onNextStep } = props;
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('');
   const [time, setTime] = useState('');
@@ -80,7 +80,6 @@ export function Step3(props: any): JSX.Element {
   <Formik initialValues={{time: 3, type: ''}} onSubmit={(values: any) => {
     setType(values.type);
     setTime(values.time);
-    console.log(values);
   } }>
   {({ values, setFieldValue }) => (
   <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
@@ -135,11 +134,14 @@ export function Step3(props: any): JSX.Element {
 
  <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
   <Button variant="contained" color="error" onClick={() => setCount(2)}> Back </Button>
-  <Button variant="contained" type="submit" onClick={() => setCount(4)}> Next </Button>
+  <Button variant="contained" type="submit" 
+    onClick={() => { setCount(4);
+      onNextStep({ type: values.type });
+    }}> Next </Button>
 </Box>
 </Container> 
 </Form>
 )}
 </Formik>
-  </>)
+  </>) 
 }
