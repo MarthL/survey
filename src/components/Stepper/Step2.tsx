@@ -1,20 +1,11 @@
 import { JSX } from "react/jsx-runtime";
 import React, {useState} from "react";
 import { Container } from "@mui/system";
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Radio, RadioGroup, List, ListItem, ListItemDecorator} from '@mui/joy';
+import { Person, People, Apartment} from '@mui/icons-material';
+import { Box, Typography, Button, TextField } from "@mui/material";
 import styles from './StepperComponent.module.css';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Radio from '@mui/joy/Radio';
-import RadioGroup from '@mui/joy/RadioGroup';
-import Person from '@mui/icons-material/Person';
-import People from '@mui/icons-material/People';
-import Apartment from '@mui/icons-material/Apartment';
-import { Box } from "@mui/material";
 
 export function  Step2(props: any): JSX.Element {
 
@@ -25,7 +16,6 @@ export function  Step2(props: any): JSX.Element {
   <Formik initialValues={{item: 'Individual'}} 
     onSubmit={ (values: any) => {
         setItem(values);
-        alert(JSON.stringify(item));
         setCount(3);
       }
     }>

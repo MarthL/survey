@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { JSX } from "react/jsx-runtime";
-import { Formik, Form, Field, FormikErrors, ErrorMessage } from "formik";
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
-import { Box } from '@mui/material';
+import { Box, Typography, TextField, Button, Container } from '@mui/material';
 import { RingLoader } from 'react-spinners';
 
 export function Step1(props: any): JSX.Element {
