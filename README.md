@@ -1,46 +1,21 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#  Survey application 
 
-## Available Scripts
+This is a survey application (SPA) using ReactJS to get informations through a client who would be interesting to get IT solutions. The dynamic form has been made with Formik tools.
 
-In the project directory, you can run:
+## Tech Stack
 
-### `npm start`
+**Client:** <br /> <br /> 
+![reactjs-fill (2)](https://github.com/MarthL/survey/assets/49653907/8cd7a90f-022f-47c1-988b-9c3c927ffae0) React TypeScript <br />
+![survey-line](https://github.com/MarthL/survey/assets/49653907/68f1565f-594d-4b82-b0d4-d46088770c17) Formik <br />
+![loader-line](https://github.com/MarthL/survey/assets/49653907/b9b3272c-c0ff-4485-8dfb-8525cf78dd35) React-spinner <br />
+![bard-line](https://github.com/MarthL/survey/assets/49653907/8aba1d65-5120-4ea9-b542-53bf13a5d760) ParticleJS <br />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Server:** <br /> <br /> 
+No BE for the moment
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Authors
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [@Martin Aubertin](https://github.com/MarthL/)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
