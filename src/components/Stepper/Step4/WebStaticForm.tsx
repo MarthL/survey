@@ -7,11 +7,78 @@ import {Box} from "@mui/material";
 import { Typography, Select, MenuItem } from "@mui/material";
 import {Button} from "@mui/material";
 import { Formik, Form } from "formik";
+import { Radio, RadioGroup, List, ListItem, ListItemDecorator} from '@mui/joy';
 import { Option } from '@mui/joy'; 
+import { Apartment, People, Person } from "@mui/icons-material";
 
 export function WebStaticForm(props: any): JSX.Element {
+  const { types, count, setCount } = props;
+
+  const [purpose, setPurpose] = useState('');
+  
   return (
-    <>WebStaticForm</>
+    <>
+      <Formik 
+        initialValues={{purpose: ''}}
+        onSubmit={(values: any) => {
+          console.log(values);
+        }}
+      >
+        <Container sx={{ margin: "1rem" }}>
+        <RadioGroup aria-label="Your plan" name="purpose" defaultValue="Individual">
+      <List
+        sx={{
+          minWidth: 240,
+          '--List-gap': '0.5rem',
+          '--ListItem-paddingY': '1rem',
+          '--ListItem-radius': '8px',
+          '--ListItemDecorator-size': '32px',
+        }}
+      >
+        {['Display informations', 'Promote services/products', 'Else'].map((item, index) => (
+          <ListItem
+            variant="outlined"
+            key={item}
+            sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
+          >
+            <ListItemDecorator>
+              {[<Person />, <People />, <Apartment />][index]}
+            </ListItemDecorator>
+            <Radio
+              overlay
+              value={item}
+              label={item}
+              name='item'
+              onChange={() => setPurpose(item)}
+              sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
+              slotProps={{
+                action: ({ checked }) => ({
+                  sx: (theme) => ({
+                    ...(checked && {
+                      inset: -1,
+                      border: '2px solid',
+                      borderColor: theme.vars.palette.primary[500],
+                    }),
+                  }),
+                }),
+              }}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </RadioGroup> 
+    <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
+      <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
+      <Button variant="contained" type="submit" 
+        onClick={() => { 
+          setCount(5);
+        }}> Next </Button>
+</Box>
+        </Container>
+
+
+      </Formik>
+    </>
   )
 }
 
