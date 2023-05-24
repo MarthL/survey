@@ -78,9 +78,9 @@ export function Step3(props: any): JSX.Element {
     setTime(values.time);
   } }>
   {({ values, setFieldValue }) => (
-  <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
-  <Container sx={{ margin: "1rem" }}>
-  <Box component="div" sx={{marginBlock: '10px'}}>
+  <Form style={{ display: 'flex', width: '100%', height:'100vh', flexDirection: "column", gap: "10px", justifyContent: 'start' }}>
+  <Container>
+  <Box component="div">
   <Typography textAlign="center"> What are the time estimation of this project ? </Typography>
   <Slider 
     color="info"

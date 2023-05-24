@@ -21,7 +21,7 @@ export function  Step2(props: any): JSX.Element {
     }>
   <Container sx={{ margin: "1rem" }}>
   <Typography align='center' fontStyle="oblique">Which kind of structure this project is about ?</Typography>
-    <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
+    <Form style={{ display: 'flex', width: '100%', height:'100vh', flexDirection: "column", gap: "10px", justifyContent: 'start' }}>
     <RadioGroup aria-label="Your plan" name="people" defaultValue="Individual">
       <List
         sx={{

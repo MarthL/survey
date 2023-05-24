@@ -14,8 +14,6 @@ export function Step4(props: any): JSX.Element {
 
   const { count, setCount, type } = props;
 
-  console.log(type);
-
   return(
     <>
     {type.type === 'static' ? <WebStaticForm count={count} setCount={setCount}/> : false }

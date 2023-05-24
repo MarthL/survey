@@ -19,12 +19,14 @@ export function WebStaticForm(props: any): JSX.Element {
       <Formik
         initialValues={{
           purpose: "",
+          target: "",
           content: {
             homepage: false,
             legalmentions: false,
             aboutus: false,
             productservice: false,
             contactform: false,
+            design: false,
           },
         }}
         onSubmit={(values: any) => {
@@ -32,7 +34,7 @@ export function WebStaticForm(props: any): JSX.Element {
         }}
       >
         {({ values, setValues, handleChange }) => (
-          <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
+          <Form style={{ display: 'flex', width: '100%', height: '100vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
             <Container sx={{ margin: "1rem" }}>
               <Typography fontStyle="oblique" color="initial" textAlign="center">What is the purpose of this website ?</Typography>
               <RadioGroup aria-label="Your plan" name="purpose" defaultValue="Individual">
@@ -139,12 +141,69 @@ export function WebStaticForm(props: any): JSX.Element {
                       },
                     }));
                   }} />} name="contactform" label="Contact form" />
+                    <FormControlLabel control={<Checkbox name="design" checked={values.content.design}
+                    onChange={(e) => {
+                      const { checked } = e.target;
+                      setValues((prevValues: any) => ({
+                        ...prevValues,
+                        content: {
+                          ...prevValues.content,
+                          design: checked,
+                        },
+                      }));
+                    }} />} label="You have already mock-up/design ideas" />
                 </FormGroup>
+              </Box>
+
+              <Box>
+              <Typography fontStyle="oblique" color="initial" textAlign="center">What is the target audience of your website ? </Typography>
+              <RadioGroup aria-label="Your plan" name="target" defaultValue="Individual">
+                <List
+                  sx={{
+                    minWidth: 240,
+                    '--List-gap': '0.5rem',
+                    '--ListItem-paddingY': '1rem',
+                    '--ListItem-radius': '8px',
+                    '--ListItemDecorator-size': '32px',
+                  }}
+                >
+                  {['B to B', 'B to C', 'Both'].map((item, index) => (
+                    <ListItem
+                      variant="outlined"
+                      key={item}
+                      sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
+                    >
+                      <ListItemDecorator>
+                        {[<Person />, <People />, <Apartment />][index]}
+                      </ListItemDecorator>
+                      <Radio
+                        overlay
+                        value={item}
+                        label={item}
+                        name='target'
+                        onChange={handleChange}
+                        sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
+                        slotProps={{
+                          action: ({ checked }) => ({
+                            sx: (theme) => ({
+                              ...(checked && {
+                                inset: -1,
+                                border: '2px solid',
+                                borderColor: theme.vars.palette.primary[500],
+                              }),
+                            }),
+                          }),
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </RadioGroup>
               </Box>
 
 
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
-                <Button variant="contained" color="error" onClick={(values) => setCount(3)}> Back </Button>
+                <Button variant="contained" color="error" onClick={() => setCount(5)}> Back </Button>
                 <Button variant="contained" type="submit"
                   onClick={() => {
                     return;
@@ -157,32 +216,3 @@ export function WebStaticForm(props: any): JSX.Element {
     </>
   )
 }
-
-// Quel est l'objectif principal de votre site web statique ?
-// Est-ce pour présenter des informations, promouvoir vos produits/services, ou autre chose ?
-
-// Quels sont les contenus que vous souhaitez inclure sur votre site web statique ?
-// Par exemple, des pages d'accueil, des pages de produits/services, une page À propos de nous, une page de contact, etc.
-
-// Avez-vous déjà une idée du design ou de la mise en page que vous souhaitez pour votre site web statique ?
-// Pouvez-vous fournir des exemples ou des références pour nous aider à mieux comprendre vos préférences ?
-
-// Avez-vous un logo ou des éléments visuels existants que vous souhaitez intégrer dans votre site web statique ?
-
-// Y a-t-il des fonctionnalités spécifiques que vous souhaitez inclure sur votre site web statique ?
-// Par exemple, un formulaire de contact, un carrousel d'images, une galerie de photos, etc.
-
-// Quelle est votre cible démographique ou votre public cible ? Cela nous aidera à adapter le design et le
-// contenu de votre site web statique pour mieux répondre à leurs besoins.
-
-// Avez-vous déjà un nom de domaine et un hébergement pour votre site web statique ?
-// Sinon, souhaitez-vous que nous vous aidions à enregistrer un nom de domaine et à trouver un hébergement approprié ?
-
-// Quelle est la timeline ou l'échéance pour la création de votre site web statique ?
-// Avez-vous des délais spécifiques auxquels nous devons nous conformer ?
-
-// Avez-vous des exigences particulières en termes de sécurité pour votre site web statique ?
-// Par exemple, des mesures de protection contre les attaques ou le piratage.
-
-// Avez-vous des exigences spécifiques en matière de référencement (SEO) pour votre site web statique ?
-// Par exemple, des mots-clés importants que vous souhaitez cibler ou des pratiques de référencement que vous souhaitez suivre.
