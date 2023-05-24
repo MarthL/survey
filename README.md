@@ -15,6 +15,12 @@ This is a survey application (SPA) using ReactJS to get informations through a c
 No BE for the moment
 
 
+## Demo:
+
+![image](https://github.com/MarthL/survey/assets/49653907/ed97c373-7803-4059-ba0b-c09f6b18d761)
+
+
+
 ## Authors
 
 - [@Martin Aubertin](https://github.com/MarthL/)
