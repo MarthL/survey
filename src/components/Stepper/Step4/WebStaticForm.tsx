@@ -1,112 +1,187 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { JSX } from "react/jsx-runtime";
 import Slider from '@mui/joy/Slider';
 import Tooltip from '@mui/material/Tooltip';
 import { Container, SelectChangeEvent } from "@mui/material";
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import { Typography, Select, MenuItem } from "@mui/material";
-import {Button} from "@mui/material";
+import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { Formik, Form } from "formik";
-import { Radio, RadioGroup, List, ListItem, ListItemDecorator} from '@mui/joy';
-import { Option } from '@mui/joy'; 
+import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
+import { Option } from '@mui/joy';
 import { Apartment, People, Person } from "@mui/icons-material";
 
 export function WebStaticForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
 
-  const [purpose, setPurpose] = useState('');
-  
   return (
     <>
-      <Formik 
-        initialValues={{purpose: ''}}
+      <Formik
+        initialValues={{
+          purpose: "",
+          content: {
+            homepage: false,
+            legalmentions: false,
+            aboutus: false,
+            productservice: false,
+            contactform: false,
+          },
+        }}
         onSubmit={(values: any) => {
-          console.log(values);
+          console.log("values", values);
         }}
       >
-        <Container sx={{ margin: "1rem" }}>
-        <RadioGroup aria-label="Your plan" name="purpose" defaultValue="Individual">
-      <List
-        sx={{
-          minWidth: 240,
-          '--List-gap': '0.5rem',
-          '--ListItem-paddingY': '1rem',
-          '--ListItem-radius': '8px',
-          '--ListItemDecorator-size': '32px',
-        }}
-      >
-        {['Display informations', 'Promote services/products', 'Else'].map((item, index) => (
-          <ListItem
-            variant="outlined"
-            key={item}
-            sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
-          >
-            <ListItemDecorator>
-              {[<Person />, <People />, <Apartment />][index]}
-            </ListItemDecorator>
-            <Radio
-              overlay
-              value={item}
-              label={item}
-              name='item'
-              onChange={() => setPurpose(item)}
-              sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
-              slotProps={{
-                action: ({ checked }) => ({
-                  sx: (theme) => ({
-                    ...(checked && {
-                      inset: -1,
-                      border: '2px solid',
-                      borderColor: theme.vars.palette.primary[500],
-                    }),
-                  }),
-                }),
-              }}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </RadioGroup> 
-    <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
-      <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
-      <Button variant="contained" type="submit" 
-        onClick={() => { 
-          setCount(5);
-        }}> Next </Button>
-</Box>
-        </Container>
+        {({ values, setValues, handleChange }) => (
+          <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
+            <Container sx={{ margin: "1rem" }}>
+              <Typography fontStyle="oblique" color="initial" textAlign="center">What is the purpose of this website ?</Typography>
+              <RadioGroup aria-label="Your plan" name="purpose" defaultValue="Individual">
+                <List
+                  sx={{
+                    minWidth: 240,
+                    '--List-gap': '0.5rem',
+                    '--ListItem-paddingY': '1rem',
+                    '--ListItem-radius': '8px',
+                    '--ListItemDecorator-size': '32px',
+                  }}
+                >
+                  {['Display informations', 'Promote services/products', 'Else'].map((item, index) => (
+                    <ListItem
+                      variant="outlined"
+                      key={item}
+                      sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
+                    >
+                      <ListItemDecorator>
+                        {[<Person />, <People />, <Apartment />][index]}
+                      </ListItemDecorator>
+                      <Radio
+                        overlay
+                        value={item}
+                        label={item}
+                        name='item'
+                        onChange={handleChange}
+                        sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
+                        slotProps={{
+                          action: ({ checked }) => ({
+                            sx: (theme) => ({
+                              ...(checked && {
+                                inset: -1,
+                                border: '2px solid',
+                                borderColor: theme.vars.palette.primary[500],
+                              }),
+                            }),
+                          }),
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </RadioGroup>
+              <Box marginTop="20px" marginBottom="20px">
+                <Typography fontStyle="oblique" color="initial" textAlign="center">What kind of content should contain your website ?</Typography>
+                <FormGroup>
+                  <FormControlLabel
+                    name="homepage"
+                    required
+                    control={
+                      <Checkbox
+                        name="homepage"
+                        checked={values.content.homepage}
+                        onChange={(e) => {
+                          const { checked } = e.target;
+                          setValues((prevValues: any) => ({
+                            ...prevValues,
+                            content: {
+                              ...prevValues.content,
+                              homepage: checked,
+                            },
+                          }));
+                          console.log(values.content.homepage);
+                        }}
+                      />
+                    }
+                    label="Home page"
+                  />
+                  <FormControlLabel required control={<Checkbox name="legalmentions" checked={values.content.legalmentions} onChange={(e) => {
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        legalmentions: e.target.checked,
+                      },
+                    }));
+                  }} />} label="Legal mentions" />
+                  <FormControlLabel control={<Checkbox name="productservice" checked={values.content.productservice} onChange={(e) => {
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        productservice: e.target.checked,
+                      },
+                    }));
+                  }} />} label="Product / Services page" />
+                  <FormControlLabel control={<Checkbox name="aboutus" checked={values.content.aboutus} onChange={(e) => {
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        aboutus: e.target.checked,
+                      },
+                    }));
+                  }} />} label="About us" />
+                  <FormControlLabel control={<Checkbox checked={values.content.contactform} onChange={(e) => {
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        contactform: e.target.checked,
+                      },
+                    }));
+                  }} />} name="contactform" label="Contact form" />
+                </FormGroup>
+              </Box>
 
 
+              <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
+                <Button variant="contained" color="error" onClick={(values) => setCount(3)}> Back </Button>
+                <Button variant="contained" type="submit"
+                  onClick={() => {
+                    return;
+                  }}> Next </Button>
+              </Box>
+            </Container>
+          </Form>
+        )}
       </Formik>
     </>
   )
 }
 
-// Quel est l'objectif principal de votre site web statique ? 
+// Quel est l'objectif principal de votre site web statique ?
 // Est-ce pour présenter des informations, promouvoir vos produits/services, ou autre chose ?
 
-// Quels sont les contenus que vous souhaitez inclure sur votre site web statique ? 
+// Quels sont les contenus que vous souhaitez inclure sur votre site web statique ?
 // Par exemple, des pages d'accueil, des pages de produits/services, une page À propos de nous, une page de contact, etc.
 
-// Avez-vous déjà une idée du design ou de la mise en page que vous souhaitez pour votre site web statique ? 
+// Avez-vous déjà une idée du design ou de la mise en page que vous souhaitez pour votre site web statique ?
 // Pouvez-vous fournir des exemples ou des références pour nous aider à mieux comprendre vos préférences ?
 
 // Avez-vous un logo ou des éléments visuels existants que vous souhaitez intégrer dans votre site web statique ?
 
-// Y a-t-il des fonctionnalités spécifiques que vous souhaitez inclure sur votre site web statique ? 
+// Y a-t-il des fonctionnalités spécifiques que vous souhaitez inclure sur votre site web statique ?
 // Par exemple, un formulaire de contact, un carrousel d'images, une galerie de photos, etc.
 
-// Quelle est votre cible démographique ou votre public cible ? Cela nous aidera à adapter le design et le 
+// Quelle est votre cible démographique ou votre public cible ? Cela nous aidera à adapter le design et le
 // contenu de votre site web statique pour mieux répondre à leurs besoins.
 
-// Avez-vous déjà un nom de domaine et un hébergement pour votre site web statique ? 
+// Avez-vous déjà un nom de domaine et un hébergement pour votre site web statique ?
 // Sinon, souhaitez-vous que nous vous aidions à enregistrer un nom de domaine et à trouver un hébergement approprié ?
 
-// Quelle est la timeline ou l'échéance pour la création de votre site web statique ? 
+// Quelle est la timeline ou l'échéance pour la création de votre site web statique ?
 // Avez-vous des délais spécifiques auxquels nous devons nous conformer ?
 
-// Avez-vous des exigences particulières en termes de sécurité pour votre site web statique ? 
+// Avez-vous des exigences particulières en termes de sécurité pour votre site web statique ?
 // Par exemple, des mesures de protection contre les attaques ou le piratage.
 
-// Avez-vous des exigences spécifiques en matière de référencement (SEO) pour votre site web statique ? 
+// Avez-vous des exigences spécifiques en matière de référencement (SEO) pour votre site web statique ?
 // Par exemple, des mots-clés importants que vous souhaitez cibler ou des pratiques de référencement que vous souhaitez suivre.
