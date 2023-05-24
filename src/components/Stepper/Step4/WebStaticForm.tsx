@@ -203,10 +203,10 @@ export function WebStaticForm(props: any): JSX.Element {
 
 
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
-                <Button variant="contained" color="error" onClick={() => setCount(5)}> Back </Button>
+                <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
                 <Button variant="contained" type="submit"
                   onClick={() => {
-                    return;
+                    setCount(5)
                   }}> Next </Button>
               </Box>
             </Container>
