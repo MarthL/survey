@@ -58,7 +58,7 @@ export function WebStaticForm(props: any): JSX.Element {
                         overlay
                         value={item}
                         label={item}
-                        name='item'
+                        name='purpose'
                         onChange={handleChange}
                         sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
                         slotProps={{
@@ -82,7 +82,6 @@ export function WebStaticForm(props: any): JSX.Element {
                 <FormGroup>
                   <FormControlLabel
                     name="homepage"
-                    required
                     control={
                       <Checkbox
                         name="homepage"
@@ -96,21 +95,22 @@ export function WebStaticForm(props: any): JSX.Element {
                               homepage: checked,
                             },
                           }));
-                          console.log(values.content.homepage);
                         }}
                       />
                     }
                     label="Home page"
                   />
-                  <FormControlLabel required control={<Checkbox name="legalmentions" checked={values.content.legalmentions} onChange={(e) => {
-                    setValues((prevValues: any) => ({
-                      ...prevValues,
-                      content: {
-                        ...prevValues.content,
-                        legalmentions: e.target.checked,
-                      },
-                    }));
-                  }} />} label="Legal mentions" />
+                  <FormControlLabel control={<Checkbox name="legalmentions" checked={values.content.legalmentions}
+                    onChange={(e) => {
+                      const { checked } = e.target;
+                      setValues((prevValues: any) => ({
+                        ...prevValues,
+                        content: {
+                          ...prevValues.content,
+                          legalmentions: checked,
+                        },
+                      }));
+                    }} />} label="Legal mentions" />
                   <FormControlLabel control={<Checkbox name="productservice" checked={values.content.productservice} onChange={(e) => {
                     setValues((prevValues: any) => ({
                       ...prevValues,
@@ -130,11 +130,12 @@ export function WebStaticForm(props: any): JSX.Element {
                     }));
                   }} />} label="About us" />
                   <FormControlLabel control={<Checkbox checked={values.content.contactform} onChange={(e) => {
+                    const { checked } = e.target;
                     setValues((prevValues: any) => ({
                       ...prevValues,
                       content: {
                         ...prevValues.content,
-                        contactform: e.target.checked,
+                        contactform: checked,
                       },
                     }));
                   }} />} name="contactform" label="Contact form" />
