@@ -66,7 +66,7 @@ export function Step1(props: any): JSX.Element {
               }}
             >
               <Container sx={{ margin: "1rem" }}>
-                <Form style={{ display: 'flex', width: '100%', height: '100vh', flexDirection: "column", gap: "10px", justifyContent: 'start' }}>
+                <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
                   <Field as={TextField} label="name" type="text" name="name" >  </Field>
                   <div className={styles.Error}> <ErrorMessage name="name" /> </div>
                   <Field as={TextField} type="text" label="surname" name="surname"></Field>
