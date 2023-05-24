@@ -24,6 +24,10 @@ You can easily start this project using npm (node v16).
   npm run start
 ```
 
+
+![michaelscottgif-min](https://github.com/MarthL/survey/assets/49653907/8dddd670-9b3e-4896-882e-efa06b9d9231)
+
+
 The default port of this project is localhost:3000
 
 ## Demo:
