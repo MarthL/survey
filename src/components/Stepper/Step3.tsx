@@ -68,7 +68,6 @@ export function Step3(props: any): JSX.Element {
   };
 
   const validate = (values: any) => {
-    console.log(values.type);
     const errors: any = {};
     if( values.type === 'Type of project' || values.type.length < 1 ) {
       errors.type = 'Please select a value';
@@ -82,6 +81,8 @@ export function Step3(props: any): JSX.Element {
     onSubmit={(values: any) => {
       setType(values.type);
       setTime(values.time);
+      onNextStep({ type: values.type });
+      setCount(4);
     }}
   >
   {({ values, setFieldValue }) => (
@@ -139,10 +140,8 @@ export function Step3(props: any): JSX.Element {
 
  <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
   <Button variant="contained" color="error" onClick={() => setCount(2)}> Back </Button>
-  <Button variant="contained" type="submit" 
-    onSubmit={() => { setCount(4);
-      onNextStep({ type: values.type });
-    }}> Next </Button>
+  <Button variant="contained" type="submit"
+  > Next </Button>
 </Box>
 </Container> 
 </Form>
