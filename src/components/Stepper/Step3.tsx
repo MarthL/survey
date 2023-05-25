@@ -18,12 +18,6 @@ export function Step3(props: any): JSX.Element {
     setSelectedValue(event.target.value);
   };
 
-  const handleTypeChange = (event: any) => {
-    const selectedValue = event.target.value;
-    setSelectedType(selectedValue);
-    setType(selectedValue);
-  };
-
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
     return () => {
