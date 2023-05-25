@@ -3,7 +3,8 @@ import { JSX } from "react/jsx-runtime";
 import { Typography, Select, MenuItem, Container, SelectChangeEvent, Box, Tooltip } from "@mui/material";
 import { Option, Slider } from '@mui/joy'; 
 import {Button} from "@mui/material";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
+import styles from './StepperComponent.module.css';
 
 export function Step3(props: any): JSX.Element {
 
@@ -66,11 +67,23 @@ export function Step3(props: any): JSX.Element {
     }
   };
 
+  const validate = (values: any) => {
+    console.log(values.type);
+    const errors: any = {};
+    if( values.type === 'Type of project' || values.type.length < 1 ) {
+      errors.type = 'Please select a value';
+    }
+    return errors;
+  }
+
   return(<>
-  <Formik initialValues={{time: 3, type: ''}} onSubmit={(values: any) => {
-    setType(values.type);
-    setTime(values.time);
-  } }>
+  <Formik initialValues={{time: 3, type: ''}}
+    validate={validate} 
+    onSubmit={(values: any) => {
+      setType(values.type);
+      setTime(values.time);
+    }}
+  >
   {({ values, setFieldValue }) => (
   <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
   <Container>
@@ -119,13 +132,15 @@ export function Step3(props: any): JSX.Element {
       <MenuItem value="consulting">Consulting</MenuItem>
       <MenuItem value="else">Something else</MenuItem>
     </Select>
-
+    <div className={styles.Error}> 
+      <ErrorMessage name="type" /> 
+    </div>
  </Box>
 
  <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
   <Button variant="contained" color="error" onClick={() => setCount(2)}> Back </Button>
   <Button variant="contained" type="submit" 
-    onClick={() => { setCount(4);
+    onSubmit={() => { setCount(4);
       onNextStep({ type: values.type });
     }}> Next </Button>
 </Box>
