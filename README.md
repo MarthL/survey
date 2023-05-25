@@ -14,6 +14,24 @@ This is a survey application (SPA) using ReactJS to get informations through a c
 **Server:** <br /> <br /> 
 No BE for the moment
 
+## Installation 
+
+You can easily start this project using npm (node v16).
+
+```bash
+  cd path/survey
+  npm install
+  npm run start
+```
+
+
+The default port of this project is localhost:3000
+
+## Demo:
+
+![image](https://github.com/MarthL/survey/assets/49653907/ed97c373-7803-4059-ba0b-c09f6b18d761)
+
+
 
 ## Authors
 
