@@ -10,6 +10,7 @@ import { Formik, Form } from "formik";
 import { Option } from '@mui/joy'; 
 import { WebStaticForm } from "./Step4/WebStaticForm";
 import { FeaturesForm } from "./Step4/FeaturesForm";
+import { WebAppForm } from "./Step4/WebAppForm";
 
 export function Step4(props: any): JSX.Element {
 
@@ -20,7 +21,7 @@ export function Step4(props: any): JSX.Element {
       {type.type === 'static' ? <WebStaticForm count={count} setCount={setCount}/> : false }
       {type.type === 'features' ? <FeaturesForm count={count} setCount={setCount}/> : false}
 
-      {type.type === 'webapp' ? <WebStaticForm count={count} setCount={setCount}/> : false}
+      {type.type === 'webapp' ? <WebAppForm count={count} setCount={setCount}/> : false}
       {type.type === 'consulting' ? <WebStaticForm count={count} setCount={setCount}/> : false}
       {type.type === 'else' ? <WebStaticForm count={count} setCount={setCount}/> : false}
     </>
