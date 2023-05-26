@@ -6,13 +6,57 @@ import { Container, SelectChangeEvent } from "@mui/material";
 import { Box } from "@mui/material";
 import { Typography, Select, MenuItem } from "@mui/material";
 import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
 import { Option } from '@mui/joy';
 import { Apartment, People, Person } from "@mui/icons-material";
+import styles from './../StepperComponent.module.css';
 
 export function WebStaticForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
+
+
+  // const checkContent = (values: any) => {
+  //   values.map((x: any) => {
+  //     if(x) {
+  //       return true
+  //     }
+  //   })
+  //   return 0;
+  // }
+  // find out a way to check that every prop of values Object are NOT false (loop) 
+
+  // const checkContent = (content: any) => {
+  //   content.map((x: any) => {
+  //     if(x){
+  //       return true
+  //     }
+  //   })
+  //   return false;
+  // }
+
+  const checkContent = (values: any) => {
+    Object.keys(values).forEach(function(key,index) {
+      if(values.index) {
+        return true
+      }
+  });
+  return false;
+  }
+
+  const validate = (values: any ) => {
+    const errors: any = {};
+    if(values.purpose === "") {
+      errors.purpose = 'Please select one of this reason';
+    }
+    if(values.target === "") {
+      errors.target = "This field is mandatory";
+    }
+    if(!checkContent(values.content)){
+      errors.content = "You must select at least one value"
+    }
+    return errors;
+  };
 
   return (
     <>
@@ -29,8 +73,10 @@ export function WebStaticForm(props: any): JSX.Element {
             design: false,
           },
         }}
+        validate={validate}
         onSubmit={(values: any) => {
           console.log("values", values);
+          setCount(5);
         }}
       >
         {({ values, setValues, handleChange }) => (
@@ -79,6 +125,7 @@ export function WebStaticForm(props: any): JSX.Element {
                   ))}
                 </List>
               </RadioGroup>
+              <div className={styles.Error}> <ErrorMessage name="purpose" /> </div>
               <Box marginTop="20px" marginBottom="20px">
                 <Typography fontStyle="oblique" color="initial" textAlign="center">What kind of content should contain your website ?</Typography>
                 <FormGroup>
@@ -153,6 +200,7 @@ export function WebStaticForm(props: any): JSX.Element {
                       }));
                     }} />} label="You have already mock-up/design ideas" />
                 </FormGroup>
+                <div className={styles.Error}> <ErrorMessage name="content" /> </div>
               </Box>
 
               <Box>
@@ -203,10 +251,7 @@ export function WebStaticForm(props: any): JSX.Element {
 
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
                 <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
-                <Button variant="contained" type="submit"
-                  onClick={() => {
-                    setCount(5)
-                  }}> Next </Button>
+                <Button variant="contained" type="submit"> Next </Button>
               </Box>
             </Container>
           </Form>
