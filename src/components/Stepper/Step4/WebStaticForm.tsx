@@ -15,13 +15,15 @@ import styles from './../StepperComponent.module.css';
 export function WebStaticForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
 
-  const checkContent = (values: any) => {
-    Object.keys(values).forEach(function(key,index) {
-      if(values.index) {
-        return true
-      }
-  });
-  return false;
+  const checkContent = (val: any) => {
+    const values = Object.values(val);
+    for (let i = 0; i < values.length; i++) {
+      if(values[i]) {
+        return true;
+      };
+      return false;
+    }
+    return false;
   }
 
   const validate = (values: any ) => {
@@ -55,7 +57,6 @@ export function WebStaticForm(props: any): JSX.Element {
         }}
         validate={validate}
         onSubmit={(values: any) => {
-          console.log("values", values);
           setCount(5);
         }}
       >
