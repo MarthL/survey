@@ -15,26 +15,6 @@ import styles from './../StepperComponent.module.css';
 export function WebStaticForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
 
-
-  // const checkContent = (values: any) => {
-  //   values.map((x: any) => {
-  //     if(x) {
-  //       return true
-  //     }
-  //   })
-  //   return 0;
-  // }
-  // find out a way to check that every prop of values Object are NOT false (loop) 
-
-  // const checkContent = (content: any) => {
-  //   content.map((x: any) => {
-  //     if(x){
-  //       return true
-  //     }
-  //   })
-  //   return false;
-  // }
-
   const checkContent = (values: any) => {
     Object.keys(values).forEach(function(key,index) {
       if(values.index) {
@@ -247,6 +227,7 @@ export function WebStaticForm(props: any): JSX.Element {
                   ))}
                 </List>
               </RadioGroup>
+              <div className={styles.Error}> <ErrorMessage name="target" /> </div>
               </Box>
 
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
