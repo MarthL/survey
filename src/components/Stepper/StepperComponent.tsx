@@ -18,7 +18,7 @@ export function StepperComponent(props: any): JSX.Element {
   const maxCount: any = 10;
   const [type, setType] = useState('');
 
-  function handleNextStep(values : string) {
+  function handleNextStep(values : string) { // set empty string by default, change for debug
     setType(values);
   }
 
