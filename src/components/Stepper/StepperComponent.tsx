@@ -12,9 +12,13 @@ import { Step2 } from './Step2';
 import { Step3 } from './Step3';
 import { Step4 } from './Step4';
 
-export function StepperComponent(props: any): JSX.Element {
+interface StepperComponentProps {
 
-  const [count, setCount] = useState(3); // set to 1 by default, change for debug
+}
+
+export function StepperComponent(props: StepperComponentProps): JSX.Element {
+
+  const [count, setCount] = useState(1); // set to 1 by default, change for debug
   const maxCount: any = 10;
   const [type, setType] = useState('');
 

@@ -3,9 +3,14 @@ import { JSX } from "react/jsx-runtime";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 import { Box, Typography, TextField, Button, Container } from '@mui/material';
-import { RingLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
-export function Step1(props: any): JSX.Element {
+interface Step1Props {
+  count?: number; 
+  setCount?: (value: number) => void;
+}
+
+export function Step1(props: Step1Props): JSX.Element {
 
   const [submit, setSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +18,11 @@ export function Step1(props: any): JSX.Element {
 
   const { count, setCount } = props;
 
-  const errors = {};
+  interface FormErrors {
+    name?: string;
+    surname?: string;
+    society?: string;
+  }
 
   useEffect(() => {
   if(!isLoaded) {
@@ -27,8 +36,8 @@ export function Step1(props: any): JSX.Element {
   }, []);
   
 
-  const validate = (values: any) => {
-    const errors: any = {};
+  const validate = (values: any): FormErrors => {
+    const errors: FormErrors = {};
     if (!values.name || values.name.length < 1) {
       errors.name = 'This field is required';
     }
@@ -47,7 +56,7 @@ export function Step1(props: any): JSX.Element {
         {isLoading ? (
           <>
             <div className="loader-container" style={{ textAlign: 'center' }}>
-            <RingLoader color="#000" size={500} />
+            <ClipLoader color="#36d7b7" size={300} />
           </div>
           </>
         ) : (
@@ -58,9 +67,10 @@ export function Step1(props: any): JSX.Element {
               validate={validate}
               onSubmit={(values) => {
                 setTimeout(() => {
-                  // alert(JSON.stringify(values, null, 2));
                   setSubmit(true);
-                  setCount(2);
+                  if(setCount) {
+                    setCount(2);
+                  }
                   console.log(count);
                 }, 400)
               }}
@@ -74,7 +84,7 @@ export function Step1(props: any): JSX.Element {
                   <Field as={TextField} type="text" label="society" name="society"></Field>
                   <div className={styles.Error}> <ErrorMessage name="society" /> </div>
                   <Box textAlign="center">
-                    <Button variant="contained" type="submit" onSubmit={() => setCount(2)}> Send </Button>
+                    <Button variant="contained" type="submit" onSubmit={() => setCount ? setCount(2) : false}> Send </Button>
                   </Box>
                 </Form>
               </Container>
