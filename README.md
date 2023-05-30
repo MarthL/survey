@@ -1,7 +1,18 @@
 
 #  Survey application 
 
+This project is a dynamic information gathering form implemented using React.js. The form is designed to collect essential information based on various IT job roles and is tailored towards the IT industry's specific business logic.
 This is a survey application (SPA) using ReactJS to get informations through a client who would be interesting to get IT solutions. The dynamic form has been made with Formik tools.
+
+
+## Features 
+
+**Dynamic Form:** The questionnaire is dynamically generated, allowing for a flexible and customizable user experience. The form adapts to the selected IT job role, presenting relevant fields and questions based on the specific requirements of that role.
+
+**IT Industry Focus:** The form's business logic is centered around the IT industry. It includes questions and fields that are relevant to IT job roles, such as software development, system administration, network engineering, and more.
+
+**User-friendly Interface:** The form provides a user-friendly interface, ensuring a smooth and intuitive experience for users. It offers clear instructions, validation mechanisms, and appropriate input fields to enhance usability. 
+
 
 ## Tech Stack
 
