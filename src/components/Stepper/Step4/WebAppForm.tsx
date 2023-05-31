@@ -1,34 +1,38 @@
 import React from "react";
 import { JSX } from "react/jsx-runtime";
-import { TextField, Button, Select, MenuItem, SelectChangeEvent, Container, Box } from "@mui/material";
+import { TextField, Button, Checkbox, Select, MenuItem, SelectChangeEvent, Container, Box, Typography, FormControlLabel, FormGroup } from "@mui/material";
 import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import styles from './../StepperComponent.module.css';
 
 export function WebAppForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
 
   const technos = [
-    'PHP', 'Javascript', 'React', 'Angular', 'Symfony', 'NodeJS',
-    'Express', 'MySQL', 'C#', 'NestJS', 'Laravel', 'HTML/CSS',
-    'Design', 'SEO', 'Others'
-  ];
-
-  const features = [
-    'Admin Dashboard', 'Authentication User', 'Blog',
-    'Articles', 'Messages and/or notifications',
-    'API', 'E-commerce with cart', 'Data/Analysis'
+    'PHP Stack', 'MERN', 'MEAN', 'MEVN', 'Java', '.NET', 'Others'
   ];
 
 
   return (
     <>
       <Formik
-        initialValues={{ objective: '', environment: '', language: '', features: '' }}
+        initialValues={{
+          objective: '', environment: '', language: '', content: {
+            adminDashboard: false,
+            authenticationUser: false,
+            blog: false,
+            articles: false,
+            messagesNotifs: false,
+            api: false,
+            eCommerce: false,
+            dataAnalysis: false,
+          },
+        }}
         onSubmit={(values: any) => {
           console.log(values);
         }}
       >
-        {({ values, handleChange, handleSubmit }) => (
+        {({ values, handleChange, handleSubmit, setValues }) => (
           <Container sx={{ margin: "1rem" }}>
             <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
               <Field as={TextField} label="objective" placeholder="Which solution this enhancements is about ?" name="objective" />
@@ -56,30 +60,105 @@ export function WebAppForm(props: any): JSX.Element {
                   <MenuItem key={item} aria-label="Which language is concerned with that feature" value={item}>{item}</MenuItem>
                 ))}
               </Select>
-              <Select
-                placeholder="Which features would you like ?"
-                name="features"
-                displayEmpty
-                renderValue={(selected) => (selected ? selected : "Which features would you like ?")}
-                value={values.features}
-                MenuProps={{
-                  PaperProps: {
-                    style: {
-                      maxHeight: '250px'
+              <Box marginTop="20px" marginBottom="20px">
+                <Typography fontStyle="oblique" color="initial" textAlign="center">What kind of content should contain your app ?</Typography>
+                <FormGroup>
+                  <FormControlLabel
+                    name="adminDashboard"
+                    control={
+                      <Checkbox
+                        name="adminDashboard"
+                        checked={values.content.adminDashboard}
+                        onChange={(e) => {
+                          const { checked } = e.target;
+                          setValues((prevValues: any) => ({
+                            ...prevValues,
+                            content: {
+                              ...prevValues.content,
+                              adminDashboard: checked,
+                            },
+                          }));
+                        }}
+                      />
                     }
-                  },
-                  disableScrollLock: true,
-                }}
-                onChange={handleChange}
-              >
-                {(<MenuItem value="" disabled> Which features would you like ? </MenuItem>)}
-                {features.sort().map((item) => (
-                  <MenuItem key={item} aria-label="Which features would you like ?" value={item}>{item}</MenuItem>
-                ))}
-              </Select>
+                    label="Admin Dashboard"
+                  />
+                  <FormControlLabel control={<Checkbox name="authenticationUser" checked={values.content.authenticationUser}
+                    onChange={(e) => {
+                      const { checked } = e.target;
+                      setValues((prevValues: any) => ({
+                        ...prevValues,
+                        content: {
+                          ...prevValues.content,
+                          authenticationUser: checked,
+                        },
+                      }));
+                    }} />} label="Authentication User" />
+                  <FormControlLabel control={<Checkbox name="blog" checked={values.content.blog} onChange={(e) => {
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        blog: e.target.checked,
+                      },
+                    }));
+                  }} />} label="Blog" />
+                  <FormControlLabel control={<Checkbox name="articles" checked={values.content.articles} onChange={(e) => {
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        articles: e.target.checked,
+                      },
+                    }));
+                  }} />} label="Articles" />
+                  <FormControlLabel control={<Checkbox checked={values.content.messagesNotifs} onChange={(e) => {
+                    const { checked } = e.target;
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        messagesNotifs: checked,
+                      },
+                    }));
+                  }} />} name="messagesNotifs" label="Messages and Notifications" />
+                  <FormControlLabel control={<Checkbox name="api" checked={values.content.api}
+                    onChange={(e) => {
+                      const { checked } = e.target;
+                      setValues((prevValues: any) => ({
+                        ...prevValues,
+                        content: {
+                          ...prevValues.content,
+                          api: checked,
+                        },
+                      }));
+                    }} />} label="API" />
+                  <FormControlLabel control={<Checkbox checked={values.content.eCommerce} onChange={(e) => {
+                    const { checked } = e.target;
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        eCommerce: checked,
+                      },
+                    }));
+                  }} />} name="eCommerce" label="E-Commerce" />
+                  <FormControlLabel control={<Checkbox checked={values.content.dataAnalysis} onChange={(e) => {
+                    const { checked } = e.target;
+                    setValues((prevValues: any) => ({
+                      ...prevValues,
+                      content: {
+                        ...prevValues.content,
+                        dataAnalysis: checked,
+                      },
+                    }));
+                  }} />} name="dataAnalysis" label="Data Analysis" />
+                </FormGroup>
+                <div className={styles.Error}> <ErrorMessage name="content" /> </div>
+              </Box>
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
                 <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
-                <Button variant="contained" type="submit" onClick={() => setCount(5)}> Send </Button>
+                <Button variant="contained" type="submit" onClick={() => console.log(values)}> Send </Button>
               </Box>
             </Form>
           </Container>

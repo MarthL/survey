@@ -18,7 +18,7 @@ export function WebStaticForm(props: any): JSX.Element {
   const checkContent = (val: any) => {
     const values = Object.values(val);
     for (let i = 0; i < values.length; i++) {
-      if(values[i]) {
+      if (values[i]) {
         return true;
       };
       return false;
@@ -26,15 +26,15 @@ export function WebStaticForm(props: any): JSX.Element {
     return false;
   }
 
-  const validate = (values: any ) => {
+  const validate = (values: any) => {
     const errors: any = {};
-    if(values.purpose === "") {
+    if (values.purpose === "") {
       errors.purpose = 'Please select one of this reason';
     }
-    if(values.target === "") {
+    if (values.target === "") {
       errors.target = "This field is mandatory";
     }
-    if(!checkContent(values.content)){
+    if (!checkContent(values.content)) {
       errors.content = "You must select at least one value"
     }
     return errors;
@@ -169,7 +169,7 @@ export function WebStaticForm(props: any): JSX.Element {
                       },
                     }));
                   }} />} name="contactform" label="Contact form" />
-                    <FormControlLabel control={<Checkbox name="design" checked={values.content.design}
+                  <FormControlLabel control={<Checkbox name="design" checked={values.content.design}
                     onChange={(e) => {
                       const { checked } = e.target;
                       setValues((prevValues: any) => ({
@@ -185,53 +185,53 @@ export function WebStaticForm(props: any): JSX.Element {
               </Box>
 
               <Box>
-              <Typography fontStyle="oblique" color="initial" textAlign="center">What is the target audience of your website ? </Typography>
-              <RadioGroup aria-label="Your plan" name="target" defaultValue="Individual">
-                <List
-                  sx={{
-                    minWidth: 240,
-                    '--List-gap': '0.5rem',
-                    '--ListItem-paddingY': '1rem',
-                    '--ListItem-radius': '8px',
-                    '--ListItemDecorator-size': '32px',
-                  }}
-                >
-                  {['B to B', 'B to C', 'Both'].map((item, index) => (
-                    <ListItem
-                      variant="outlined"
-                      key={item}
-                      sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
-                    >
-                      <ListItemDecorator>
-                        {[<Person />, <People />, <Apartment />][index]}
-                      </ListItemDecorator>
-                      <Radio
-                        overlay
-                        value={item}
-                        label={item}
-                        name='target'
-                        onChange={handleChange}
-                        sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
-                        slotProps={{
-                          action: ({ checked }) => ({
-                            sx: (theme) => ({
-                              ...(checked && {
-                                inset: -1,
-                                border: '2px solid',
-                                borderColor: theme.vars.palette.primary[500],
+                <Typography fontStyle="oblique" color="initial" textAlign="center">What is the target audience of your website ? </Typography>
+                <RadioGroup aria-label="Your plan" name="target" defaultValue="Individual">
+                  <List
+                    sx={{
+                      minWidth: 240,
+                      '--List-gap': '0.5rem',
+                      '--ListItem-paddingY': '1rem',
+                      '--ListItem-radius': '8px',
+                      '--ListItemDecorator-size': '32px',
+                    }}
+                  >
+                    {['B to B', 'B to C', 'Both'].map((item, index) => (
+                      <ListItem
+                        variant="outlined"
+                        key={item}
+                        sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
+                      >
+                        <ListItemDecorator>
+                          {[<Person />, <People />, <Apartment />][index]}
+                        </ListItemDecorator>
+                        <Radio
+                          overlay
+                          value={item}
+                          label={item}
+                          name='target'
+                          onChange={handleChange}
+                          sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
+                          slotProps={{
+                            action: ({ checked }) => ({
+                              sx: (theme) => ({
+                                ...(checked && {
+                                  inset: -1,
+                                  border: '2px solid',
+                                  borderColor: theme.vars.palette.primary[500],
+                                }),
                               }),
                             }),
-                          }),
-                        }}
-                      />
-                    </ListItem>
-                  ))}
-                </List>
-              </RadioGroup>
-              <div className={styles.Error}> <ErrorMessage name="target" /> </div>
+                          }}
+                        />
+                      </ListItem>
+                    ))}
+                  </List>
+                </RadioGroup>
+                <div className={styles.Error}> <ErrorMessage name="target" /> </div>
               </Box>
 
-              <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
+              <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly' marginTop='20px' marginBottom='20px'>
                 <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
                 <Button variant="contained" type="submit"> Next </Button>
               </Box>
