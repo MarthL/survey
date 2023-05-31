@@ -55,7 +55,7 @@ export function Step1(props: Step1Props): JSX.Element {
       <div>
         {isLoading ? (
           <>
-            <div className="loader-container" style={{ textAlign: 'center' }}>
+            <div className="loader-container" style={{ textAlign: 'center', marginTop: '50%' }}>
               <ClipLoader color="#36d7b7" size={300} />
             </div>
           </>
