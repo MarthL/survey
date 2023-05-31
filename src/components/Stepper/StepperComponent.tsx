@@ -13,26 +13,26 @@ import { Step3 } from './Step3';
 import { Step4 } from './Step4';
 
 interface StepperComponentProps {
-
+  count?: number;
 }
 
 export function StepperComponent(props: StepperComponentProps): JSX.Element {
 
   const [count, setCount] = useState(1); // set to 1 by default, change for debug
-  const maxCount: any = 10;
+  const maxCount: number = 10;
   const [type, setType] = useState('');
 
-  function handleNextStep(values : string) { // set empty string by default, change for debug
+  function handleNextStep(values: string) { // set empty string by default, change for debug
     setType(values);
   }
 
-  return(
+  return (
     <>
-      <Typography align='center' mt={5} mb={2}> Etape <span>{count}/{maxCount}</span></Typography>   
-      { count === 1 ? <Step1 setCount={setCount}/> : false} 
-      { count === 2 ? <Step2 setCount={setCount}/> : false}
-      { count === 3 ? <Step3 setCount={setCount} onNextStep={handleNextStep} /> : false }
-      { count === 4 ? <Step4 setCount={setCount} type={type} /> : false }
+      <Typography align='center' mt={5} mb={2}> Etape <span>{count}/{maxCount}</span></Typography>
+      {count === 1 ? <Step1 setCount={setCount} /> : false}
+      {count === 2 ? <Step2 setCount={setCount} /> : false}
+      {count === 3 ? <Step3 setCount={setCount} onNextStep={handleNextStep} /> : false}
+      {count === 4 ? <Step4 setCount={setCount} type={type} /> : false}
     </>
   )
 

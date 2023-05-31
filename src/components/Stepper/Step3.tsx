@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { JSX } from "react/jsx-runtime";
 import { Typography, Select, MenuItem, Container, SelectChangeEvent, Box, Tooltip } from "@mui/material";
-import { Option, Slider } from '@mui/joy'; 
-import {Button} from "@mui/material";
+import { Option, Slider } from '@mui/joy';
+import { Button } from "@mui/material";
 import { Formik, Form, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 
@@ -17,6 +17,10 @@ export function Step3(props: any): JSX.Element {
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedValue(event.target.value);
+  };
+
+  interface FormErrors {
+    type?: string;
   };
 
   useEffect(() => {
@@ -44,9 +48,9 @@ export function Step3(props: any): JSX.Element {
       return value;
     }
   }
-  
+
   const marks = [
-    {value : 1, label: "1 month"},
+    { value: 1, label: "1 month" },
     { value: 11, label: '+10 months' },
   ];
 
@@ -67,85 +71,85 @@ export function Step3(props: any): JSX.Element {
     }
   };
 
-  const validate = (values: any) => {
-    const errors: any = {};
-    if( values.type === 'Type of project' || values.type.length < 1 ) {
+  const validate = (values: any): FormErrors => {
+    const errors: FormErrors = {};
+    if (values.type === 'Type of project' || values.type.length < 1) {
       errors.type = 'Please select a value';
     }
     return errors;
   }
 
-  return(<>
-  <Formik initialValues={{time: 3, type: ''}}
-    validate={validate} 
-    onSubmit={(values: any) => {
-      setType(values.type);
-      setTime(values.time);
-      onNextStep({ type: values.type });
-      setCount(4);
-    }}
-  >
-  {({ values, setFieldValue }) => (
-  <Form style={{ display: 'flex', width: '100%', height:'70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
-  <Container>
-  <Box component="div">
-  <Typography textAlign="center"> What are the time estimation of this project ? </Typography>
-  <Slider 
-    color="info"
-    name="time"
-    size="lg"
-    variant="solid"
-    defaultValue={3} 
-    max={11} 
-    min={1}
-    valueLabelDisplay="auto"
-    marks={marks}
-    valueLabelFormat={isMaxValue}
-    getAriaValueText={valueText}
-    onChange={(event, value) => setFieldValue("time", value)}
-  />
-  </Box>
-
-  <Typography textAlign="center">Which kind of project is it ? </Typography>
-
-  <Box component="div" sx={{marginTop : "20px", marginBottom: "20px", textAlign: 'center'}}>
-  <Select
-      color="primary"
-      name="type"
-      placeholder="Type of project"
-      displayEmpty
-      size="medium"
-      variant="outlined"
-      value={selectedValue}
-      onChange={(event: any) => {
-        setFieldValue("type", event.target.value);
-        handleChange(event);
+  return (<>
+    <Formik initialValues={{ time: 3, type: '' }}
+      validate={validate}
+      onSubmit={(values: any) => {
+        setType(values.type);
+        setTime(values.time);
+        onNextStep({ type: values.type });
+        setCount(4);
       }}
-      renderValue={(value: string) => getMenuText(value)}
-      onClose={() => setOpen(false)}
-      onClick={() => setOpen(true)}
-      sx={{ textAlign: 'center' }}
     >
-      <MenuItem value="" disabled> Type of project </MenuItem>
-      <MenuItem value="static">Static Website</MenuItem>
-      <MenuItem value="webapp">Web Application</MenuItem>
-      <MenuItem value="features">Features on existing Web app</MenuItem>
-      <MenuItem value="consulting">Consulting</MenuItem>
-      <MenuItem value="else">Something else</MenuItem>
-    </Select>
-    <div className={styles.Error}> 
-      <ErrorMessage name="type" /> 
-    </div>
- </Box>
+      {({ values, setFieldValue }) => (
+        <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
+          <Container>
+            <Box component="div">
+              <Typography textAlign="center"> What are the time estimation of this project ? </Typography>
+              <Slider
+                color="info"
+                name="time"
+                size="lg"
+                variant="solid"
+                defaultValue={3}
+                max={11}
+                min={1}
+                valueLabelDisplay="auto"
+                marks={marks}
+                valueLabelFormat={isMaxValue}
+                getAriaValueText={valueText}
+                onChange={(event, value) => setFieldValue("time", value)}
+              />
+            </Box>
 
- <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
-  <Button variant="contained" color="error" onClick={() => setCount(2)}> Back </Button>
-  <Button variant="contained" type="submit"
-  > Next </Button>
-</Box>
-</Container> 
-</Form>
-)}
-</Formik>
-  </>) 
+            <Typography textAlign="center">Which kind of project is it ? </Typography>
+
+            <Box component="div" sx={{ marginTop: "20px", marginBottom: "20px", textAlign: 'center' }}>
+              <Select
+                color="primary"
+                name="type"
+                placeholder="Type of project"
+                displayEmpty
+                size="medium"
+                variant="outlined"
+                value={selectedValue}
+                onChange={(event: any) => {
+                  setFieldValue("type", event.target.value);
+                  handleChange(event);
+                }}
+                renderValue={(value: string) => getMenuText(value)}
+                onClose={() => setOpen(false)}
+                onClick={() => setOpen(true)}
+                sx={{ textAlign: 'center' }}
+              >
+                <MenuItem value="" disabled> Type of project </MenuItem>
+                <MenuItem value="static">Static Website</MenuItem>
+                <MenuItem value="webapp">Web Application</MenuItem>
+                <MenuItem value="features">Features on existing Web app</MenuItem>
+                <MenuItem value="consulting">Consulting</MenuItem>
+                <MenuItem value="else">Something else</MenuItem>
+              </Select>
+              <div className={styles.Error}>
+                <ErrorMessage name="type" />
+              </div>
+            </Box>
+
+            <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
+              <Button variant="contained" color="error" onClick={() => setCount(2)}> Back </Button>
+              <Button variant="contained" type="submit"
+              > Next </Button>
+            </Box>
+          </Container>
+        </Form>
+      )}
+    </Formik>
+  </>)
 }
