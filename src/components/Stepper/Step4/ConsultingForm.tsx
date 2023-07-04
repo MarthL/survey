@@ -3,7 +3,7 @@ import { JSX } from "react/jsx-runtime";
 import { TextField, Button, Select, MenuItem, SelectChangeEvent, Container, Box } from "@mui/material";
 import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import styles from './StepperComponent.module.css';
+import styles from './../StepperComponent.module.css';
 
 export function ConsultingForm(props: any): JSX.Element {
 
@@ -25,7 +25,7 @@ export function ConsultingForm(props: any): JSX.Element {
     <>
       <Formik
         initialValues={{ consulting: '' }}
-        onSubmit={(values: any) => console.log(values)}
+        onSubmit={() => setCount(5)}
         validate={validate}
       >
         <Container sx={{ margin: "1rem" }}>
