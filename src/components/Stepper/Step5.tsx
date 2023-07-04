@@ -7,9 +7,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 
 export function Step5(props: any): JSX.Element {
-  const { setCount, datas } = props;
-
-  console.log(datas);
+  const { datas } = props
 
   return (
     <>

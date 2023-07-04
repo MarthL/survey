@@ -12,14 +12,10 @@ export function Step2(props: any): JSX.Element {
   const { count, setCount, name, datas, setDatas } = props;
   const [item, setItem] = useState('Individual');
 
-  console.log(datas);
-
   return (<>
     <Formik initialValues={{ item: item }}
       onSubmit={() => {
-        console.log(item);
         setDatas(Object.assign(datas, { item: item }));
-        console.log(datas);
         setCount(3);
       }
       }>
@@ -50,7 +46,7 @@ export function Step2(props: any): JSX.Element {
                     value={item}
                     label={item}
                     name={item}
-                    onChange={() => { console.log(item); setItem(item) }}
+                    onChange={() => setItem(item)}
                     sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
                     slotProps={{
                       action: ({ checked }) => ({

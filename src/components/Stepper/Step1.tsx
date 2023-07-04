@@ -70,7 +70,6 @@ export function Step1(props: Step1Props): JSX.Element {
                 onSubmit={(values) => {
                   setTimeout(() => {
                     setDatas ? setDatas(values) : false;
-                    console.log(datas);
                     if (setCount) {
                       setCount(2);
                     }

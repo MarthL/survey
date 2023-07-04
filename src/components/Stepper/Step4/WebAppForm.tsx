@@ -41,7 +41,6 @@ export function WebAppForm(props: webAppFormProps): JSX.Element {
     if (!checkContent(values.content)) {
       errors.content = 'You need to choose at least 1 argument';
     }
-    console.log(checkContent(values.content))
     return errors;
   };
 
@@ -66,7 +65,6 @@ export function WebAppForm(props: webAppFormProps): JSX.Element {
           },
         }}
         onSubmit={(values: any) => {
-          console.log(values);
           setDatas ? setDatas(Object.assign(datas, values)) : false;
           setCount(5);
         }}
@@ -201,7 +199,7 @@ export function WebAppForm(props: webAppFormProps): JSX.Element {
               </Box>
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
                 <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
-                <Button variant="contained" type="submit" onClick={() => console.log(values)}> Send </Button>
+                <Button variant="contained" type="submit"> Send </Button>
               </Box>
             </Form>
           </Container>

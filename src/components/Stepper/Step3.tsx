@@ -24,8 +24,6 @@ export function Step3(props: Step3Props): JSX.Element {
   const [time, setTime] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
 
-  console.log(datas);
-
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedValue(event.target.value);
   };
