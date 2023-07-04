@@ -5,13 +5,18 @@ import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from './../StepperComponent.module.css';
 
-export function ConsultingForm(props: any): JSX.Element {
+interface ConsultingFormProps {
+  setCount: (value: number) => void;
+  datas: object;
+  setDatas: (value: any) => void;
+}
+
+export function ConsultingForm(props: ConsultingFormProps): JSX.Element {
 
   interface FormErrors {
     consulting?: string;
   }
-
-  const { setCount } = props;
+  const { setCount, datas, setDatas } = props;
 
   const validate = (values: any): FormErrors => {
     const errors: FormErrors = {};
@@ -25,7 +30,11 @@ export function ConsultingForm(props: any): JSX.Element {
     <>
       <Formik
         initialValues={{ consulting: '' }}
-        onSubmit={() => setCount(5)}
+        onSubmit={(values: any) => {
+          setDatas ? setDatas(Object.assign(datas, values)) : false;
+          setCount(5)
+        }
+        }
         validate={validate}
       >
         <Container sx={{ margin: "1rem" }}>
