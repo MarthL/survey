@@ -5,8 +5,15 @@ import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from './../StepperComponent.module.css';
 
-export function WebAppForm(props: any): JSX.Element {
-  const { types, count, setCount } = props;
+interface webAppFormProps {
+  count: number;
+  setCount: (value: number) => void;
+  setDatas?: (datas: any) => void;
+  datas: object;
+}
+
+export function WebAppForm(props: webAppFormProps): JSX.Element {
+  const { count, setCount, datas, setDatas } = props;
 
   interface FormErrors {
     objective?: string;
@@ -60,6 +67,7 @@ export function WebAppForm(props: any): JSX.Element {
         }}
         onSubmit={(values: any) => {
           console.log(values);
+          setDatas ? setDatas(Object.assign(datas, values)) : false;
           setCount(5);
         }}
         validate={validate}
