@@ -22,12 +22,12 @@ export function Step4(props: any): JSX.Element {
 
   return (
     <>
-      {type.type === 'static' ? <WebStaticForm count={count} setCount={setCount} /> : false}
-      {type.type === 'features' ? <FeaturesForm count={count} setCount={setCount} /> : false}
+      {type.type === 'static' ? <WebStaticForm count={count} setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
+      {type.type === 'features' ? <FeaturesForm count={count} setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
 
-      {type.type === 'webapp' ? <WebAppForm count={count} setCount={setCount} /> : false}
-      {type.type === 'consulting' ? <ConsultingForm count={count} setCount={setCount} /> : false}
-      {type.type === 'else' ? <OtherForm count={count} setCount={setCount} /> : false}
+      {type.type === 'webapp' ? <WebAppForm count={count} setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
+      {type.type === 'consulting' ? <ConsultingForm count={count} setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
+      {type.type === 'else' ? <OtherForm count={count} setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
     </>
   )
 

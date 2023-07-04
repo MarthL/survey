@@ -7,7 +7,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 
 interface Step3Props {
-  count: number;
+  count?: number;
   datas: object;
   name?: string;
   setCount: (value: number) => void;
@@ -22,7 +22,6 @@ export function Step3(props: Step3Props): JSX.Element {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('');
   const [time, setTime] = useState('');
-  const [selectedType, setSelectedType] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
 
   console.log(datas);

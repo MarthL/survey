@@ -12,8 +12,16 @@ import { Option } from '@mui/joy';
 import { Apartment, People, Person } from "@mui/icons-material";
 import styles from './../StepperComponent.module.css';
 
+interface WebStaticFormProps {
+  types: string;
+  count: number;
+  setCount: (value: number) => void;
+  datas: object;
+  setDatas?: (datas: any) => void;
+}
+
 export function WebStaticForm(props: any): JSX.Element {
-  const { types, count, setCount } = props;
+  const { types, count, setCount, datas, setDatas } = props;
 
   const checkContent = (val: any) => {
     const keys = Object.keys(val);
@@ -46,11 +54,13 @@ export function WebStaticForm(props: any): JSX.Element {
             aboutus: false,
             productservice: false,
             contactform: false,
-            design: false,
+            alreadydesign: false,
           },
         }}
         validate={validate}
         onSubmit={(values: any) => {
+          setDatas(Object.assign(datas, values));
+          console.log('datas', datas);
           setCount(5);
         }}
       >
@@ -163,14 +173,14 @@ export function WebStaticForm(props: any): JSX.Element {
                       },
                     }));
                   }} />} name="contactform" label="Contact form" />
-                  <FormControlLabel control={<Checkbox name="design" checked={values.content.design}
+                  <FormControlLabel control={<Checkbox name="alreadydesign" checked={values.content.alreadydesign}
                     onChange={(e) => {
                       const { checked } = e.target;
                       setValues((prevValues: any) => ({
                         ...prevValues,
                         content: {
                           ...prevValues.content,
-                          design: checked,
+                          alreadydesign: checked,
                         },
                       }));
                     }} />} label="You have already mock-up/design ideas" />
