@@ -6,14 +6,26 @@ import { Button } from "@mui/material";
 import { Formik, Form, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 
-export function Step3(props: any): JSX.Element {
+interface Step3Props {
+  count?: number;
+  datas: object;
+  name?: string;
+  setCount: (value: number) => void;
+  setDatas?: (datas: any) => void;
+  onNextStep: (args: object) => void;
+}
 
-  const { count, setCount, onNextStep } = props;
+
+export function Step3(props: Step3Props): JSX.Element {
+
+  const { datas, setDatas, count, setCount, onNextStep } = props;
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('');
   const [time, setTime] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
+
+  console.log(datas);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedValue(event.target.value);
@@ -86,6 +98,7 @@ export function Step3(props: any): JSX.Element {
         setType(values.type);
         setTime(values.time);
         onNextStep({ type: values.type });
+        setDatas ? setDatas(Object.assign(datas, values)) : false;
         setCount(4);
       }}
     >

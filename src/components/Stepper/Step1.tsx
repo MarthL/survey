@@ -7,7 +7,9 @@ import { ClipLoader } from 'react-spinners';
 
 interface Step1Props {
   count?: number;
+  datas?: object;
   setCount?: (value: number) => void;
+  setDatas?: (datas: any) => void;
 }
 
 export function Step1(props: Step1Props): JSX.Element {
@@ -16,7 +18,7 @@ export function Step1(props: Step1Props): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const { count, setCount } = props;
+  const { count, setCount, setDatas, datas } = props;
 
   interface FormErrors {
     name?: string;
@@ -67,11 +69,12 @@ export function Step1(props: Step1Props): JSX.Element {
                 validate={validate}
                 onSubmit={(values) => {
                   setTimeout(() => {
-                    setSubmit(true);
+                    setDatas ? setDatas(values) : false;
+                    console.log(datas);
                     if (setCount) {
                       setCount(2);
                     }
-                    console.log(count);
+                    setSubmit(true);
                   }, 400)
                 }}
               >
@@ -84,7 +87,7 @@ export function Step1(props: Step1Props): JSX.Element {
                     <Field as={TextField} type="text" label="society" name="society"></Field>
                     <div className={styles.Error}> <ErrorMessage name="society" /> </div>
                     <Box textAlign="center">
-                      <Button variant="contained" type="submit" onSubmit={() => setCount ? setCount(2) : false}> Send </Button>
+                      <Button variant="contained" type="submit"> Send </Button>
                     </Box>
                   </Form>
                 </Container>

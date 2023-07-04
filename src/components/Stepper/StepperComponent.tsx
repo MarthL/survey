@@ -23,8 +23,9 @@ export function StepperComponent(props: StepperComponentProps): JSX.Element {
   const maxCount: number = 10;
   const [type, setType] = useState('');
   const [loaded, setLoaded] = useState(false);
+  const [datas, setDatas] = useState({});
 
-  function handleNextStep(values: string) { // set empty string by default, change for debug
+  function handleNextStep(values: any) {
     setType(values);
   }
 
@@ -37,11 +38,11 @@ export function StepperComponent(props: StepperComponentProps): JSX.Element {
   return (
     <>
       {!loaded ? false : (<Typography variant='h1' align='center' mt={5} mb={2}> Step <span>{count}/{maxCount}</span></Typography>)}
-      {count === 1 ? <Step1 setCount={setCount} /> : false}
-      {count === 2 ? <Step2 setCount={setCount} /> : false}
-      {count === 3 ? <Step3 setCount={setCount} onNextStep={handleNextStep} /> : false}
-      {count === 4 ? <Step4 setCount={setCount} type={type} /> : false}
-      {count === 5 ? <Step5 setCount={setCount} /> : false}
+      {count === 1 ? <Step1 setCount={setCount} setDatas={setDatas} /> : false}
+      {count === 2 ? <Step2 setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
+      {count === 3 ? <Step3 setCount={setCount} datas={datas} setDatas={setDatas} onNextStep={handleNextStep} /> : false}
+      {count === 4 ? <Step4 setCount={setCount} datas={datas} setDatas={setDatas} type={type} /> : false}
+      {count === 5 ? <Step5 setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
     </>
   )
 

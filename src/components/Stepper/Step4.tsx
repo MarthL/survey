@@ -16,7 +16,9 @@ import { ConsultingForm } from "./Step4/ConsultingForm";
 
 export function Step4(props: any): JSX.Element {
 
-  const { count, setCount, type } = props;
+  const { count, setCount, type, datas, setDatas } = props;
+
+  console.log(datas);
 
   return (
     <>

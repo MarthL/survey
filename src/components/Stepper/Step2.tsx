@@ -9,8 +9,10 @@ import styles from './StepperComponent.module.css';
 
 export function Step2(props: any): JSX.Element {
 
-  const { count, setCount, name } = props;
+  const { count, setCount, name, datas, setDatas } = props;
   const [item, setItem] = useState('Individual');
+
+  console.log(datas);
 
   return (<>
     <Formik initialValues={{ item: 'Individual' }}
