@@ -7,7 +7,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 
 interface Step3Props {
-  count?: number;
+  count: number;
   datas: object;
   name?: string;
   setCount: (value: number) => void;

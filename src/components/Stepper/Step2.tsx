@@ -16,11 +16,11 @@ export function Step2(props: any): JSX.Element {
 
   return (<>
     <Formik initialValues={{ item: item }}
-      onSubmit={(values: any) => {
+      onSubmit={() => {
         console.log(item);
         setDatas(Object.assign(datas, { item: item }));
         console.log(datas);
-        // setCount(3);
+        setCount(3);
       }
       }>
       <Container sx={{ margin: "1rem" }}>
