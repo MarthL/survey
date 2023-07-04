@@ -19,7 +19,7 @@ interface StepperComponentProps {
 
 export function StepperComponent(props: StepperComponentProps): JSX.Element {
 
-  const [count, setCount] = useState(3); // set to 1 by default, change for debug
+  const [count, setCount] = useState(1); // set to 1 by default, change for debug
   const maxCount: number = 10;
   const [type, setType] = useState('');
   const [loaded, setLoaded] = useState(false);

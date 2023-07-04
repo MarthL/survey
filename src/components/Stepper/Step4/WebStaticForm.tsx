@@ -16,15 +16,9 @@ export function WebStaticForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
 
   const checkContent = (val: any) => {
-    const values = Object.values(val);
-    for (let i = 0; i < values.length; i++) {
-      if (values[i]) {
-        return true;
-      };
-      return false;
-    }
-    return false;
-  }
+    const keys = Object.keys(val);
+    return keys.some((key) => val[key]);
+  };
 
   const validate = (values: any) => {
     const errors: any = {};
