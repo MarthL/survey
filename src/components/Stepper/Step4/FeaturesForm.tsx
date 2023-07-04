@@ -3,9 +3,16 @@ import { JSX } from "react/jsx-runtime";
 import { TextField, Button, Select, MenuItem, SelectChangeEvent, Container, Box } from "@mui/material";
 import { Radio, RadioGroup, List, ListItem, ListItemDecorator } from '@mui/joy';
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import styles from './../StepperComponent.module.css';
 
 export function FeaturesForm(props: any): JSX.Element {
   const { count, setCount } = props;
+
+  interface FormErrors {
+    objective?: string;
+    environment?: string;
+    language?: string;
+  }
 
   const technos = [
     'PHP', 'Javascript', 'React', 'Angular', 'Symfony', 'NodeJS',
@@ -13,21 +20,37 @@ export function FeaturesForm(props: any): JSX.Element {
     'Design', 'SEO', 'Others'
   ];
 
+  const validate = (values: any): FormErrors => {
+    const errors: FormErrors = {};
+    if (!values.objective || values.objective < 1) {
+      errors.objective = 'This field is required';
+    }
+    if (!values.environment || values.environment < 1) {
+      errors.environment = 'This field is required';
+    }
+    if (!values.language || values.language < 1) {
+      errors.language = 'This field is required';
+    }
+    return errors;
+  }
+
   return (
     <>
       <Formik
         initialValues={{ objective: '', environment: '', language: '' }}
+        validate={validate}
         onSubmit={(values: any) => {
           console.log(values);
+          setCount(5);
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
           <Container sx={{ margin: "1rem" }}>
             <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
               <Field as={TextField} label="objective" placeholder="Which solution this enhancements is about ?" name="objective" />
-
+              <div className={styles.Error}> <ErrorMessage name="objective" /> </div>
               <Field as={TextField} label="environment" placeholder="Please provides any informations regarding environment/specificities" name="environment" />
-
+              <div className={styles.Error}> <ErrorMessage name="environment" /> </div>
               <Select
                 placeholder="Which language will be solicited ?"
                 name="language"
@@ -49,9 +72,10 @@ export function FeaturesForm(props: any): JSX.Element {
                   <MenuItem key={item} aria-label="Which language is concerned with that feature" value={item}>{item}</MenuItem>
                 ))}
               </Select>
+              <div className={styles.Error}> <ErrorMessage name="language" /> </div>
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
                 <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
-                <Button variant="contained" type="submit" onClick={() => setCount(5)}> Send </Button>
+                <Button variant="contained" type="submit"> Send </Button>
               </Box>
             </Form>
           </Container>
