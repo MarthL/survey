@@ -60,7 +60,6 @@ export function WebStaticForm(props: any): JSX.Element {
         validate={validate}
         onSubmit={(values: any) => {
           setDatas(Object.assign(datas, values));
-          console.log('datas', datas);
           setCount(5);
         }}
       >
