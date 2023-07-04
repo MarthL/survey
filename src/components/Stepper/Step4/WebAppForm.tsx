@@ -8,6 +8,36 @@ import styles from './../StepperComponent.module.css';
 export function WebAppForm(props: any): JSX.Element {
   const { types, count, setCount } = props;
 
+  interface FormErrors {
+    objective?: string;
+    environment?: string;
+    language?: string;
+    content?: Object;
+  }
+
+  const checkContent = (val: any) => {
+    const keys = Object.keys(val);
+    return keys.some((key) => val[key]);
+  };
+
+  const validate = (values: any): FormErrors => {
+    const errors: FormErrors = {};
+    if (!values.objective || values.objective.length < 1) {
+      errors.objective = 'This field is required';
+    }
+    if (!values.environment || values.environment.length < 1) {
+      errors.environment = 'This field is required';
+    }
+    if (!values.language || values.language.length < 1) {
+      errors.language = 'This field is required';
+    }
+    if (!checkContent(values.content)) {
+      errors.content = 'You need to choose at least 1 argument';
+    }
+    console.log(checkContent(values.content))
+    return errors;
+  };
+
   const technos = [
     'PHP Stack', 'MERN', 'MEAN', 'MEVN', 'Java', '.NET', 'Others'
   ];
@@ -30,14 +60,18 @@ export function WebAppForm(props: any): JSX.Element {
         }}
         onSubmit={(values: any) => {
           console.log(values);
+          setCount(5);
         }}
+        validate={validate}
       >
         {({ values, handleChange, handleSubmit, setValues }) => (
           <Container sx={{ margin: "1rem" }}>
             <Form style={{ display: 'flex', width: '100%', height: '70vh', flexDirection: "column", gap: "10px", justifyContent: 'center' }}>
               <Field as={TextField} label="objective" placeholder="Which solution this enhancements is about ?" name="objective" />
+              <div className={styles.Error}> <ErrorMessage name="objective" /> </div>
 
               <Field as={TextField} label="environment" placeholder="Please provides any informations regarding environment/specificities" name="environment" />
+              <div className={styles.Error}> <ErrorMessage name="environment" /> </div>
 
               <Select
                 placeholder="Which language will be solicited ?"
@@ -60,6 +94,7 @@ export function WebAppForm(props: any): JSX.Element {
                   <MenuItem key={item} aria-label="Which language is concerned with that feature" value={item}>{item}</MenuItem>
                 ))}
               </Select>
+              <div className={styles.Error}> <ErrorMessage name="language" /> </div>
               <Box marginTop="20px" marginBottom="20px">
                 <Typography fontStyle="oblique" color="initial" textAlign="center">What kind of content should contain your app ?</Typography>
                 <FormGroup>
@@ -153,8 +188,8 @@ export function WebAppForm(props: any): JSX.Element {
                       },
                     }));
                   }} />} name="dataAnalysis" label="Data Analysis" />
+                  <div className={styles.Error}> <ErrorMessage name="content" /> </div>
                 </FormGroup>
-                <div className={styles.Error}> <ErrorMessage name="content" /> </div>
               </Box>
               <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
                 <Button variant="contained" color="error" onClick={() => setCount(3)}> Back </Button>
