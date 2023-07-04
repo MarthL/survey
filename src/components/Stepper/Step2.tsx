@@ -15,10 +15,12 @@ export function Step2(props: any): JSX.Element {
   console.log(datas);
 
   return (<>
-    <Formik initialValues={{ item: 'Individual' }}
+    <Formik initialValues={{ item: item }}
       onSubmit={(values: any) => {
-        setItem(values);
-        setCount(3);
+        console.log(item);
+        setDatas(Object.assign(datas, { item: item }));
+        console.log(datas);
+        // setCount(3);
       }
       }>
       <Container sx={{ margin: "1rem" }}>
@@ -47,8 +49,8 @@ export function Step2(props: any): JSX.Element {
                     overlay
                     value={item}
                     label={item}
-                    name='item'
-                    onChange={() => setItem(item)}
+                    name={item}
+                    onChange={() => { console.log(item); setItem(item) }}
                     sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
                     slotProps={{
                       action: ({ checked }) => ({
@@ -67,7 +69,7 @@ export function Step2(props: any): JSX.Element {
             </List>
           </RadioGroup>
           <Box textAlign="center" display="flex" alignItems='center' justifyContent='space-evenly'>
-            <Button variant="contained" type="submit" onSubmit={() => setCount(3)}> Envoyer </Button>
+            <Button variant="contained" type="submit"> Envoyer </Button>
           </Box>
         </Form>
       </Container>
