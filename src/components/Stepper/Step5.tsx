@@ -7,21 +7,49 @@ import { Formik, Form, ErrorMessage } from "formik";
 import styles from './StepperComponent.module.css';
 import emailjs from 'emailjs-com';
 
-interface step5Props {
-  datas: object;
+interface FormData {
+  name: string;
+  surname: string;
+  society: string;
+  item: string;
+  type: string;
+  purpose?: string;
+  target?: string;
+  content: {
+    consulting?: string;
+    objective?: string;
+    environment?: string;
+    language?: string;
+    reason?: string;
+    adminDashboard?: boolean;
+    authenticationUser?: boolean;
+    blog?: boolean;
+    articles?: boolean;
+    messagesNotifs?: boolean;
+    api?: boolean;
+    eCommerce?: boolean;
+    dataAnalysis?: boolean;
+    homepage?: boolean;
+    legalmentions?: boolean;
+    aboutus?: boolean;
+    productservice?: boolean;
+    contactform?: boolean;
+    alreadydesign?: boolean;
+  };
 }
 
-export function Step5(props: step5Props): JSX.Element {
+export function Step5(props: any): JSX.Element {
   const { datas } = props;
   const [emailStatus, setEmailStatus] = useState('');
 
   useEffect(() => {
-    const formattedData = Object.entries(datas)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join("\n");
-
     const templateParams = {
-      emailData: formattedData
+      name: datas.name,
+      surname: datas.surname,
+      society: datas.society,
+      item: datas.item,
+      type: datas.type,
+      content: datas.content,
     };
 
     emailjs.send('service_9hv3qip', 'template_ayqp91m', templateParams, 'gGh-4ASWzEbfUHsRN')
@@ -52,5 +80,3 @@ export function Step5(props: step5Props): JSX.Element {
     </>
   );
 }
-
-
