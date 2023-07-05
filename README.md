@@ -23,7 +23,7 @@ This is a survey application (SPA) using ReactJS to get informations through a c
 ![bard-line](https://github.com/MarthL/survey/assets/49653907/8aba1d65-5120-4ea9-b542-53bf13a5d760) ParticleJS <br />
 
 **Server:** <br /> <br /> 
-No BE for the moment
+No back-end. A service from emailJS send automatically all the datas neeeded.
 
 ## Installation 
 
