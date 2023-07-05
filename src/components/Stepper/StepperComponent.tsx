@@ -42,7 +42,7 @@ export function StepperComponent(props: StepperComponentProps): JSX.Element {
       {count === 2 ? <Step2 setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
       {count === 3 ? <Step3 setCount={setCount} datas={datas} setDatas={setDatas} onNextStep={handleNextStep} /> : false}
       {count === 4 ? <Step4 setCount={setCount} datas={datas} setDatas={setDatas} type={type} /> : false}
-      {count === 5 ? <Step5 setCount={setCount} datas={datas} setDatas={setDatas} /> : false}
+      {count === 5 ? <Step5 datas={datas} /> : false}
     </>
   )
 

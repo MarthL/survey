@@ -9,6 +9,7 @@ interface ConsultingFormProps {
   setCount: (value: number) => void;
   datas: object;
   setDatas: (value: any) => void;
+  count: number;
 }
 
 export function ConsultingForm(props: ConsultingFormProps): JSX.Element {
