@@ -39,9 +39,9 @@ You can easily start this project using npm (node v16).
 The default port of this project is localhost:3000
 
 ## Demo:
-
-![image](https://github.com/MarthL/survey/assets/49653907/ed97c373-7803-4059-ba0b-c09f6b18d761)
-
+<p align="center">
+  <img width="550" height="800" src="https://github.com/MarthL/survey/assets/49653907/ed97c373-7803-4059-ba0b-c09f6b18d761">
+</p>
 
 
 ## Authors
